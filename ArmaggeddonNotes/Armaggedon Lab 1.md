@@ -116,7 +116,7 @@ Make note of endpoint: lab-mysql.cl02ec282asu.us-west-2.rds.amazonaws.com
 
 Connected to the Instance:
 
-![wrkg connect to EC2](images/Screenshot-2026-01-02-at8.22.25-PM.png)
+![wrkg connect to EC2](images/Screenshot-2026-01-02-at-8.22.25-PM.png)
 
 put in EC2
 aws secretsmanager get-secret-value --secret-id lab/rds/mysql
