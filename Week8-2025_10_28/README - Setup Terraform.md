@@ -28,7 +28,7 @@ It will create the TheoWAF folder structure if needed and will download a .gitig
 
 Run the following command to make sure you see the hidden .gitignore file:
 - *ls -a
-![[Screenshot 2025-10-19 at 2.51.42 PM.png]]
+![git ignore](images/Screenshot-2025-10-19-at-2.51.42-PM.png)
 
 You want to put the .gitignore file into the new folder you just made. You can move (mv) or copy (cp):
 - *cp ./.gitignore (target-destination) 
@@ -57,7 +57,7 @@ Go to https://registry.terraform.io/
 - Search for AWS
 - Search for aws_vpc
 
-![[Screenshot 2025-10-19 at 10.27.23 PM.png]]
+![tf registry resources](images/Screenshot-2025-10-19-at-10.27.23-PM.png)
 
 
 
