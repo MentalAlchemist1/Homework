@@ -44,8 +44,8 @@ Create role and attach to policy
 - alex_inline_policy
 - check 
 
-![inline policy](images/Screenshot-2026-01-02-at-7.37.12 PM.png)
-![alex_armaggeddon_role](images/Screenshot-2026-01-02-at-7.41.09 PM.png)
+![inline policy](images/Screenshot-2026-01-02-at-7.37.12-PM.png)
+![alex_armaggeddon_role](images/Screenshot-2026-01-02-at-7.41.09-PM.png)
 ![link of role and policy](images/Screenshot-2026-01-02-at-7.42.01-PM.png)
  4. EC2 creations:
     - Default setting for AMI (Amazon Linux 2023)
@@ -116,13 +116,13 @@ Make note of endpoint: lab-mysql.cl02ec282asu.us-west-2.rds.amazonaws.com
 
 Connected to the Instance:
 
-![wrkg connect to EC2](images/Screenshot-2026-01-02-at8.22.25 PM.png)
+![wrkg connect to EC2](images/Screenshot-2026-01-02-at8.22.25-PM.png)
 
 put in EC2
 aws secretsmanager get-secret-value --secret-id lab/rds/mysql
 
 
-![aws secrets mgr](images/Screenshot-2026-01-02-at-8.24.26 PM.png)
+![aws secrets mgr](images/Screenshot-2026-01-02-at-8.24.26-PM.png)
 EC2 connects to secrets manager
 got everything
 
