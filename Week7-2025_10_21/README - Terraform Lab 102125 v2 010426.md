@@ -72,7 +72,7 @@ Now, get Terraform started:
 
 Change region to us-west-2
 - us-east-1 has had a lot of issues lately...that's where basically 40% of the internet went down the week of 14 Oct 2025.
-![provider config](images/Pasted image-20251028191853.png)
+![provider config](images/Pasted-image-20251028191853.png)
 - CTRL-S to save, if necessary
 
 *terraform validate
