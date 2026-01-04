@@ -44,9 +44,9 @@ Create role and attach to policy
 - alex_inline_policy
 - check 
 
-![[Screenshot 2026-01-02 at 7.37.12 PM.png]]
-![[Screenshot 2026-01-02 at 7.41.09 PM.png]]
-![[Screenshot 2026-01-02 at 7.42.01 PM.png]]
+![inline policy](images/Screenshot-2026-01-02-at-7.37.12 PM.png)
+![alex_armaggeddon_role](images/Screenshot-2026-01-02-at-7.41.09 PM.png)
+![link of role and policy](images/Screenshot-2026-01-02-at-7.42.01-PM.png)
  4. EC2 creations:
     - Default setting for AMI (Amazon Linux 2023)
     - Default instance type and settings
@@ -54,6 +54,8 @@ Create role and attach to policy
     - Choose created VPC, public subnet, and public security group
     - enable 'Auto-assign public IP'
     - Double-check, pray, then launch instance
+    - in user data, under pip install flask pymysql boto3, add the following: dnf install mariadb105 -y
+    - Also, don't forget to change your region to the one you want to be in instead of Theos' us-east-1 default
 
 name: lab-ec2-app
 key pair: alex_armaggeddon_key_pair
@@ -72,14 +74,15 @@ rds creation will automatically make a sg
     - steps = Instance  > Actions > Security > Modify IAM Role
     - Then attach the role you just created under 'IAM Role'
     - The click 'Update IAM Role'
-    ![[Screenshot 2026-01-02 at 7.52.39 PM.png]]
+    ![modify IAM role](images/Screenshot-2026-01-02-at-7.52.39-PM.png)
 Before creating RDS, copy ipv4 and copy into browser
-![[Screenshot 2026-01-02 at 7.54.30 PM.png]]
+![ec2 to rds](images/Screenshot-2026-01-02-at-7.54.30-PM.png)
 6. Create RDS Database:
     - Go to create database under 'Aurora and RDS'
     - Go 'Full Configuration'
     - Then "MySQL"
-    - Then Choose 'Free Tier'
+    - Then Choose 'Free Tier' Template
+    - Availability and Durability - Deployment options = Single AZ BC instance deployment
     - Choose DB Instance Identifier ('lab-mysql')
     - Choose Master username ('admin')
     - Then select 'Self Managed' for 'Credentials management'
@@ -87,11 +90,18 @@ Before creating RDS, copy ipv4 and copy into browser
     - Then leave setting default until Connectivity, select "Connect to and EC2 compute resource"
     - Choose the created EC2 under 'EC2 Instance'
     - VPC should be automatically selected
-    - DB Subnet Group, choose automatic setup
+    - DB Subnet Group, choose automatic setup. We're telling the db which subnet to go to. e.g...
+	    - dawgs_rds_subnet
+	    - choose lab vpc
+	    - choose AZs you want...make sure that the AZs you choose has the AZs we have chosen in VPC
+	    - Reason to create your own? Security standpoint. the db would create its own CIDR ranges and subnets. Force it to do it your way...more securely. Make sure the subnet is PRIVATE for the db.
     - Public Access = 'No'
     - For VPC Security Group check 'Create New'
+	    - EC2 and RDS security groups are DIFFERENT
+	    - RDS sg only allows inbound traffic on port 3306
+	    - it will create 2 sg...putting one on the EC2 and one on the db itself we're making right now
     - Enable Logs then 'Create Database'
-    ![[Screenshot 2026-01-02 at 8.09.01 PM.png]]
+    ![create db ec2 connection](images/Screenshot-2026-01-02-at-8.09.01-PM.png)
 Make note of endpoint: lab-mysql.cl02ec282asu.us-west-2.rds.amazonaws.com
 
 7. Create Secret in Secrets Manager
@@ -106,13 +116,13 @@ Make note of endpoint: lab-mysql.cl02ec282asu.us-west-2.rds.amazonaws.com
 
 Connected to the Instance:
 
-![[Screenshot 2026-01-02 at 8.22.25 PM.png]]
+![wrkg connect to EC2](images/Screenshot-2026-01-02-at8.22.25 PM.png)
 
 put in EC2
 aws secretsmanager get-secret-value --secret-id lab/rds/mysql
 
 
-![[Screenshot 2026-01-02 at 8.24.26 PM.png]]
+![aws secrets mgr](images/Screenshot-2026-01-02-at-8.24.26 PM.png)
 EC2 connects to secrets manager
 got everything
 
@@ -120,22 +130,22 @@ mysql -h <RDS_ENDPOINT> -u admin -p
 - endpoint: lab-mysql.cl02ec282asu.us-west-2.rds.amazonaws.com
 - logs us into db itself
 - We're IN!!
-![[Screenshot 2026-01-02 at 8.28.46 PM.png]]
+![connected to mysql db](images/Screenshot-2026-01-02-at-8.28.46-PM.png)
 
 
-![[Screenshot 2026-01-02 at 8.34.18 PM.png]]
+![show db](images/Screenshot-2026-01-02-at-8.34.18-PM.png)
 
 
-![[Screenshot 2026-01-02 at 8.42.12 PM.png]]
+![created db](images/Screenshot-2026-01-02-at-8.42.12-PM.png)
 - CREATE DATABASE labdb;
 
 systemctl start rdsapp
 
 sudo systemctl restart rdsapp
 
-![[Screenshot 2026-01-02 at 8.48.17 PM.png]]
+![initialized labdb](images/Screenshot-2026-01-02-at-8.48.17-PM.png)
 
-![[Screenshot 2026-01-02 at 8.51.31 PM.png]]
+![inserted first note](images/Screenshot-2026-01-02-at-8.51.31-PM.png)
 
-![[Screenshot 2026-01-02 at 8.54.24 PM.png]]
+![list of notes](images/Screenshot-2026-01-02-at-8.54.24-PM.png)
 
