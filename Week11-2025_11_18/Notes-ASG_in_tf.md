@@ -12,7 +12,7 @@ https://docs.aws.amazon.com/autoscaling/ec2/userguide/tutorial-ec2-auto-scaling-
 		- egress (outbound) rule = "0.0.0.0/0"
 		- ip_protocol = "-1"
 - second sg = DONE = WORKS!
-![sg for lb](images/Pasted-image20251121173123.png)
+![sg for lb](images/Pasted-image-20251121173123.png)
 ## Launch Template
 
 ### ClickOps
@@ -59,7 +59,7 @@ Copy your vpc_id from the 1-vpc file
 - network mapping == custom VPC, select ALL AZs, and select PUBLIC subnets for each AZ. <font color="#ff0000">Internet-facing scheme REQUIRES it.</font> DO NOT MAKE THIS MISTAKE! Switch from private to public!
 ![az n lb](images/Pasted-image-20251120172609.png)
 Public gateway needed = IGW...private goes to NAT gateway
-![vpc resource map](images/Screenshot-2025-11-20-at-5.27.07-PM.png]]
+![vpc resource map](images/Screenshot-2025-11-20-at-5.27.07-PM.png)
 - security group == delete default, and use the custom LB security group created previously
 - listnener == http:80
 - default action == forward to TGs
