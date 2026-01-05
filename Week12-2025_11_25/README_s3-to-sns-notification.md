@@ -1,19 +1,12 @@
-# s3-to-sns-notification
-
 # Creating an SNS Notification for your s3 Uploads
 
 *When someone uploads to an S3 bucket you will recieve a notification*
-
 
 ### Step 1: Create an S3 Bucket
 
 1. Go to your AWS Console and search S3 then select S3.
 
-![](/attachments/select-s3.png)
-
 2. Click create Bucket.
-
-![](/attachments/create-bucket.png)
 
 3. Give bucket a unique name as buckets require global uniqueness.<s3snslambda-project>
 
@@ -21,7 +14,6 @@
 
 5. Go to the bottom of the screen and create bucket.
 
-![](/attachments/create-bucket.png)
 
 ### Step 2: Create an SNS Topic
 
@@ -30,23 +22,13 @@
 
 2. Click Topics in the left pane of screen.
 
-![](/attachments/select-topic.png)
-
 3. Create Topic.
-
-![](/attachments/create-topic.png)
 
 4. Select Standard Topic.
 
-![](/attachments/select-standard.png)
-
 5. Enter a name for the Topic (e.g., s3-email-notification)
 
-![](/attachments/name-topic.png)
-
 6. Create topic.
-
-![](/attachments/create-topic.png)
 
 **You must also put a name in the display name**
 
@@ -57,17 +39,11 @@
 
 1. Click Create Subscription.
 
-![](/attachments/create-subscription.png)
-
 2. Select Protocol <email>
-
-![](/attachments/select-protocol.png)
 
 3. Make your email the endpoint.
 
 4. Create Subscription.
-
-![](/attachments/create-subscription.png)
 
 5. Check your email to confirm subscription. (check spam if you don't see it)
 
@@ -75,28 +51,18 @@
 
 1. Search Lambda in the search bar and select Lambda.
 
-![](/attachments/select-lambda.png)
-
 2. Select Create Function.
-
-![](/attachments/create-function.png)
 
 3. Author from Scratch.
 
-![](/attachments/a-f-s.png)
-
 4. Name Function S3toSNSLambda.
 
-5. Runtime Select Pyhton 3.?
+5. Runtime Select Python 3.?
 
 6. Expand "Change Default Execution Role under permissions."
         Choose "Create a new role with basic Lambda Permissions."
 
-![](/attachments/lamda-config.png)
-
 7. Click Create Function
-
-![](/attachments/create-function.png)
 
 ### Step 5: Add Code to Lambda
 
@@ -228,8 +194,6 @@ AmazonSNSFullAccess (or create a custom policy with sns:Publish)
 
 3. Scroll down to Access Policy section and edit Poicy.
 
-![](/attachments/attach-policies.png)
-
 Replace the existing policy with the following (update Your_Account_Number_Here and Lambda function name):
 
 
@@ -266,17 +230,11 @@ Replace the existing policy with the following (update Your_Account_Number_Here 
 
 3. Click Properties, scroll to Event Notifications
 
-![](/attachments/select-properties.png)
-
 4. Click Create Event Notification.
-
-![](/attachments/event-notification.png)
 
 5. Event name (TriggerLambdaOnUpload)
 
 6. Event types (All object create events [PUT])
-
-![](/attachments/put.png)
 
 7. Destination -> Select Lambda Function
 
@@ -292,8 +250,6 @@ Replace the existing policy with the following (update Your_Account_Number_Here 
 2. Wait a few seconds to a few minutes.
 
 3. Check your email inbox for the SNS notification.
-
-![](/attachments/confirmation.png)
 
 
 
