@@ -12,7 +12,7 @@ https://docs.aws.amazon.com/autoscaling/ec2/userguide/tutorial-ec2-auto-scaling-
 		- egress (outbound) rule = "0.0.0.0/0"
 		- ip_protocol = "-1"
 - second sg = DONE = WORKS!
-![[Pasted image 20251121173123.png]]
+![sg for lb](images/Pasted-image20251121173123.png)
 ## Launch Template
 
 ### ClickOps
@@ -49,7 +49,7 @@ Change app1 to shai-hulud-target-group
 
 Copy your vpc_id from the 1-vpc file
 
-![[Screenshot 2025-11-21 at 7.39.36 PM.png]]
+![vpc lb](images/Screenshot-2025-11-21-at-7.39.36-PM.png)
 ## Load Balancer
 
 ### Clickops - Load Balancer
@@ -57,9 +57,9 @@ Copy your vpc_id from the 1-vpc file
 - scheme == internet facing
 - LB IP address type == ipv4
 - network mapping == custom VPC, select ALL AZs, and select PUBLIC subnets for each AZ. <font color="#ff0000">Internet-facing scheme REQUIRES it.</font> DO NOT MAKE THIS MISTAKE! Switch from private to public!
-![[Pasted image 20251120172609.png]]
+![az n lb](images/Pasted-image-20251120172609.png)
 Public gateway needed = IGW...private goes to NAT gateway
-![[Screenshot 2025-11-20 at 5.27.07 PM.png]]
+![vpc resource map](images/Screenshot-2025-11-20-at-5.27.07-PM.png]]
 - security group == delete default, and use the custom LB security group created previously
 - listnener == http:80
 - default action == forward to TGs
@@ -75,7 +75,7 @@ Cool stuff to do later
 DNS Name for our LB:
 shai-hulud-loadbalancer-02-654373030.us-west-2.elb.amazonaws.com
 - this is how we access our EC2s behind our LB and ASG
-![[Screenshot 2025-11-20 at 6.26.26 PM.png]]
+![DNS LB](images/Screenshot-2025-11-20-at-6.26.26-PM.png)
 
 ### Terraform - Load Balancer
 
@@ -92,7 +92,7 @@ Don't need acm certificate...edit, toggle line comment
 
 Lot of pain & suffering here if there wasn't WORKING CODE...thank THEO!
 
-![[Screenshot 2025-11-21 at 8.26.58 PM.png]]
+![lbs](images/Screenshot-2025-11-21-at-8.26.58-PM.png)
 
 ## ASG
 
